@@ -1,0 +1,11 @@
+node_modules
+dist
+
+# Compiled/generated files
+src/*.js
+src/*.js.map
+src/*.d.ts
+src/*.d.ts.map
+
+# Prisma
+prisma/migrations

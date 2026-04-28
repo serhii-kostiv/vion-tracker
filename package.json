@@ -1,0 +1,49 @@
+{
+  "name": "vion-tracker",
+  "version": "0.1.0",
+  "description": "Vion Tracker — fullstack monorepo application built with NestJS and Next.js",
+  "author": {
+    "name": "Serhii Kostiv",
+    "email": "kostiv.serhii@gmail.com"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "keywords": [
+    "nestjs",
+    "nextjs",
+    "turborepo",
+    "prisma",
+    "postgresql",
+    "monorepo",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "pnpm db:up && turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:stop": "docker compose stop",
+    "db:logs": "docker compose logs -f",
+    "db:restart": "pnpm db:down && pnpm db:up",
+    "db:generate": "pnpm --filter @repo/database run db:generate",
+    "db:migrate": "pnpm --filter @repo/database run db:migrate",
+    "db:push": "pnpm --filter @repo/database run db:push",
+    "db:studio": "pnpm --filter @repo/database run db:studio",
+    "db:seed": "pnpm --filter @repo/database run db:seed"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "turbo": "^2.9.6"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

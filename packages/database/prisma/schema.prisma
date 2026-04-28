@@ -1,0 +1,74 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum TransactionType {
+    INCOME
+    EXPENSE
+    TRANSFER
+}
+
+enum AccountType {
+    CASH
+    BANK
+    INVESTMENT
+    SAVINGS
+}
+
+model User {
+    id              String     @id @default(uuid())
+    name            String
+    email           String     @unique
+    password        String
+    defaultCurrency String     @default("UAH")
+    avatarUrl       String?
+    accounts        Account[]
+    categories      Category[]
+    createdAt       DateTime   @default(now())
+}
+
+model Account {
+    id           String        @id @default(uuid())
+    name         String
+    type         AccountType   @default(CASH)
+    balance      Decimal       @db.Decimal(19, 4) // Завжди Decimal для грошей!
+    currency     String        @default("UAH")
+    userId       String
+    user         User          @relation(fields: [userId], references: [id])
+    transactions Transaction[]
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+}
+
+model Category {
+    id           String        @id @default(uuid())
+    name         String
+    icon         String? // Назва іконки (напр. "coffee", "car")
+    color        String? // Hex-код для UI
+    userId       String? // null для системних категорій
+    user         User?         @relation(fields: [userId], references: [id])
+    transactions Transaction[]
+}
+
+model Transaction {
+    id          String          @id @default(uuid())
+    type        TransactionType
+    amount      Decimal         @db.Decimal(19, 4)
+    description String?
+    date        DateTime        @default(now())
+
+    // Зв'язок з рахунком
+    accountId String
+    account   Account @relation(fields: [accountId], references: [id])
+
+    // Зв'язок з категорією
+    categoryId String
+    category   Category @relation(fields: [categoryId], references: [id])
+
+    // Для переказів (Transfer)
+    toAccountId String?
+}
