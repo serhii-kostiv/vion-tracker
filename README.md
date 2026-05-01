@@ -195,10 +195,6 @@ User ──< Token
 
 ---
 
-## Contributing
-
-Внески вітаються! Відкрийте Issue або Pull Request.
-
 ## Ліцензія
 
 [MIT](LICENSE) © [Serhii Kostiv](https://github.com/serhiikostiv)
