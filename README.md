@@ -1,5 +1,9 @@
 # Vion Tracker
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-brightgreen)](https://nodejs.org)
+[![pnpm](https://img.shields.io/badge/pnpm-%3E%3D9-orange)](https://pnpm.io)
+
 Fullstack застосунок для відстеження особистих фінансів. Дозволяє керувати рахунками, категоріями та транзакціями (доходи, витрати, перекази).
 
 ## Стек технологій
@@ -191,6 +195,10 @@ User ──< Token
 
 ---
 
+## Contributing
+
+Внески вітаються! Відкрийте Issue або Pull Request.
+
 ## Ліцензія
 
-UNLICENSED — всі права захищені.
+[MIT](LICENSE) © [Serhii Kostiv](https://github.com/serhiikostiv)

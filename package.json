@@ -6,7 +6,7 @@
     "name": "Serhii Kostiv",
     "email": "kostiv.serhii@gmail.com"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "keywords": [
     "nestjs",
