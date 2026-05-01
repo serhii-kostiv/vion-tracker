@@ -1,12 +1,9 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-
-interface RequestWithUser {
-  user?: Record<string, unknown>;
-}
+import type { User as UserEntity } from '@repo/database';
 
 export const User = createParamDecorator(
-  (data: string | undefined, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest<RequestWithUser>();
+  (data: keyof UserEntity | undefined, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest<{ user: UserEntity }>();
     const user = request.user;
 
     return data ? user?.[data] : user;

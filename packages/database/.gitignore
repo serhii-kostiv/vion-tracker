@@ -9,3 +9,6 @@ src/*.d.ts.map
 
 # Prisma
 prisma/migrations
+
+# Generated Prisma client
+src/generated/

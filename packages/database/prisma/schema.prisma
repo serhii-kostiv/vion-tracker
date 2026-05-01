@@ -1,11 +1,13 @@
 generator client {
     provider = "prisma-client-js"
+    output   = "../src/generated"
 }
 
 datasource db {
     provider = "postgresql"
 }
 
+//Types
 enum TransactionType {
     INCOME
     EXPENSE
@@ -19,16 +21,47 @@ enum AccountType {
     SAVINGS
 }
 
+enum TokenType {
+    EMAIL_VERIFY
+    PASSWORD_RESET
+    DEACTIVATE_ACCOUNT
+
+    @@map("token_types")
+}
+
 model User {
     id              String     @id @default(uuid())
     name            String
     email           String     @unique
     password        String
     defaultCurrency String     @default("UAH")
-    avatarUrl       String?
+    avatar          String?
     accounts        Account[]
     categories      Category[]
-    createdAt       DateTime   @default(now())
+    isEmailVerified Boolean    @default(false) @map("is_email_verified")
+    isDeactivated   Boolean    @default(false) @map("is_deactivated")
+    tokens          Token[]
+    deactivatedAt   DateTime?  @map("deactivated_at")
+    createdAt       DateTime   @default(now()) @map("created_at")
+    updatedAt       DateTime   @updatedAt @map("updated_at")
+
+    @@map("users")
+}
+
+model Token {
+    id String @id @default(uuid())
+
+    token     String    @unique
+    type      TokenType
+    expiresIn DateTime  @map("expires_in")
+
+    user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String? @map("user_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("tokens")
 }
 
 model Account {

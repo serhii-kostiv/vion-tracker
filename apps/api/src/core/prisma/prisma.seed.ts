@@ -24,7 +24,7 @@ async function main() {
       email: 'demo@viontrack.app',
       password: demoPasswordHash,
       defaultCurrency: 'UAH',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/9919?s=200&v=4',
+      avatar: 'https://avatars.githubusercontent.com/u/9919?s=200&v=4',
     },
   });
 }

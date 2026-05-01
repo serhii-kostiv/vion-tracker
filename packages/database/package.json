@@ -14,7 +14,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup",
+    "build": "npm run copy-generated && tsc",
+    "copy-generated": "cp -r src/generated dist/",
     "db:generate": "prisma generate",
     "postinstall": "prisma generate",
     "db:migrate": "prisma migrate dev",

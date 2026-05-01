@@ -14,6 +14,7 @@ import { envValidationSchema } from './env.validation';
         resolve(process.cwd(), '.env'), // apps/api/.env (якщо є)
         resolve(process.cwd(), '../../.env'), // корінь монорепо
       ],
+      expandVariables: true, // Підтримка ${VAR} інтерполяції
       validationSchema: envValidationSchema,
       validationOptions: {
         allowUnknown: true, // Дозволяємо інші env variables

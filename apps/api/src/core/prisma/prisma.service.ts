@@ -26,7 +26,7 @@ export class PrismaService
   }
 
   async onModuleDestroy(): Promise<void> {
-    await this.$disconnect();
+    await (this as PrismaClient).$disconnect();
     this.logger.log('Database disconnected gracefully');
   }
 
@@ -50,5 +50,10 @@ export class PrismaService
     }
 
     return result;
+  }
+
+  // Явно додаємо доступ до моделі token
+  get token() {
+    return super.token;
   }
 }

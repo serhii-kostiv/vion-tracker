@@ -9,4 +9,8 @@ export default tseslint.config(nestJsConfig, {
       tsconfigRootDir: import.meta.dirname,
     },
   },
+  settings: {
+    'import/extensions': ['.ts', '.tsx'],
+  },
+  files: ['**/*.ts', '**/*.tsx'],
 });
